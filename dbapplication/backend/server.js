@@ -1,9 +1,19 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3").verbose();
+const cors = require("cors");
+const path = require('path');
 
 const app = express();
 const port = 3000;
+
+// Enable CORS
+app.use(cors());
+
+// Serve static files from frontend directory
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// ...existing code...
 
 // Middleware to parse JSON request bodies
 app.use(bodyParser.json());
